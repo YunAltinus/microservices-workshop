@@ -6,6 +6,10 @@ orderResponder.on('*', req => req.type && console.log(req))
 const orders = []
 let idCounter = 0
 
+orderResponder.on('list', () => {
+    return Promise.resolve(orders)
+})
+
 orderResponder.on('create order', req => {
     const order = { id: idCounter++, ...req.order, status: 'preparing' }
 
